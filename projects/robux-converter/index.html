@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brenny.tk - Projects</title>
+
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" href="https://newcss.net/theme/night.css">
+    <script defer src="../../resources/scripts.js"></script>
+</head>
+<body>
+    <div w3-include-html="../../resources/project_header.html"></div>
+    
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+    <div style="width:53%; margin: 0 23.5%; transform: translate3d(35px, -15px, 0);">
+        <h1><img src="Robux.png" style="width:25px; display: inline-block; transform: translateY(16px);"> Robux Converter</h1>
+    </div>
+    <!--
+    <input type="number" id="Robux" placeholder="R$ (Robux)" style="width: 48%;"><button style="width: 48%; margin-left: 2%;" id="Convert" onclick="javascript:ConvertRobux()">Convert</button>-->
+    <h4 style="display:inline-block;">Robux:</h4> <input type="number" id="Robux" placeholder="R$ (Robux)" style="width: 90%;display:inline-block;">
+    <h2 style="width: 100%; text-align: center;">Value</h2>
+    <h4>USD: <code><span id="USD">$0</span></code></h4>
+    <h4>CAD: <code><span id="CAD">$0</span></code></h4>
+    <h2 style="width: 100%; text-align: center;">With Roblox Tax (%30)</h2>
+    <h4>USD: <code><span id="tUSD">$0</span></code></h4>
+    <h4>CAD: <code><span id="tCAD">$0</span></code></h4>
+
+    <script defer>
+        var USD = document.getElementById("USD");
+        var CAD = document.getElementById("CAD");
+        var tUSD = document.getElementById("tUSD");
+        var tCAD = document.getElementById("tCAD");
+
+        setInterval(function () {
+            var Robux = parseFloat(document.getElementById("Robux").value)
+            if (isNaN(Robux)) { Robux = 0 }
+            if (Robux <= 0) {
+                USD.innerHTML = "$0";
+                CAD.innerHTML = "$0";
+                tUSD.innerHTML = "$0";
+                tCAD.innerHTML = "$0";
+                return
+            }
+            USD.innerHTML = "$" + ((Robux/800)*10).toFixed(2)
+            CAD.innerHTML = "$" + (((Robux/800)*10)*1.36).toFixed(2)
+            
+            Robux = Robux * 0.7
+            tUSD.innerHTML = "$" + ((Robux/800)*10).toFixed(2)
+            tCAD.innerHTML = "$" + (((Robux/800)*10)*1.36).toFixed(2)
+        }, 10)
+    </script>
+</body>
+</html>
